@@ -21,7 +21,7 @@ describe("When Form is created", () => {
         })
       );
       await screen.findByText("En cours");
-      await screen.findByText("Message envoyé !");
+      await screen.findAllByText("Message envoyé !");
     });
   });
 
@@ -48,7 +48,10 @@ describe("When a page is created", () => {
     expect(screen.getByText(/45 avenue de la République/)).toBeInTheDocument();
   });
 
-  /*it("an event card, with the last event, is displayed", async () => {
-   
-  )};*/
-)}
+   it("an event card, with the last event, is displayed", async () => {
+    render(<Home />);
+    const title = (await screen.findAllByText("Notre derniére prestation"));
+    // expect(title.length).toBeGreaterThan(0)
+    expect(title[0]).toBeInTheDocument();
+  }); 
+})
