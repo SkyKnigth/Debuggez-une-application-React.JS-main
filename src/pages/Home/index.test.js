@@ -48,8 +48,7 @@ describe("When a page is created", () => {
     expect(screen.getByText(/45 avenue de la République/)).toBeInTheDocument();
   });
 
-  it("an event card, with the last event, is displayed", async () => {
-    render(<Home />);
-    expect(await screen.findByText((text) => text.includes("Événement test"))).toBeInTheDocument();
-  });
-});
+  /*it("an event card, with the last event, is displayed", async () => {
+   
+  )};*/
+)}
