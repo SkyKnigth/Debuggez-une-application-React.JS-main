@@ -29,16 +29,27 @@ describe("When Form is created", () => {
 
 
 describe("When a page is created", () => {
-  it("a list of events is displayed", () => {
-    // to implement
-  })
-  it("a list a people is displayed", () => {
-    // to implement
-  })
-  it("a footer is displayed", () => {
-    // to implement
-  })
-  it("an event card, with the last event, is displayed", () => {
-    // to implement
-  })
+  it("a list of events is displayed", async () => {
+    render(<Home />);
+    const headings = await screen.findAllByText("Nos réalisations");
+    expect(headings.length).toBeGreaterThan(0); // ou : screen.findByRole(...)
+  });
+
+  it("a list of people is displayed", async () => {
+    render(<Home />);
+    const teamTitle = await screen.findByRole("heading", { name: "Notre équipe" });
+    expect(teamTitle).toBeInTheDocument();
+    expect(await screen.findByText("Samira")).toBeInTheDocument();
+  });
+
+  it("a footer is displayed", async () => {
+    render(<Home />);
+    expect(await screen.findByText("Contactez-nous")).toBeInTheDocument();
+    expect(screen.getByText(/45 avenue de la République/)).toBeInTheDocument();
+  });
+
+  it("an event card, with the last event, is displayed", async () => {
+    render(<Home />);
+    expect(await screen.findByText((text) => text.includes("Événement test"))).toBeInTheDocument();
+  });
 });
